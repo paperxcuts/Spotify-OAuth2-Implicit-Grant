@@ -8,7 +8,7 @@ const jsonprestring = json => `<pre>${JSON.stringify(json, null, 2)}</pre>`;
 
 // get json data from response to GET request at API_ENDPOINT
 async function api_request(url) {
-    return await fetch(`${API_ENDPOINT}/${url}`, {headers: AUTH_HEADER}).then(res => res.json()).catch(err => {console.log(err)});
+    return await fetch(`${API_ENDPOINT}/${url}`, {headers: AUTH_HEADER}).then(res => res.json());
 }
 
 // simplified, filtered representation of data
@@ -66,7 +66,6 @@ function displayPlaylistTracks()
     })
     .catch(err => console.log(err));
 }
-
 function displayUserPlaylists()
 {
     console.log('hit');
@@ -107,7 +106,7 @@ function displayUserRequest()
 }
 
 
-// append endpoint to html
+// append endpoint to before textbox
 $('#request-prefix').prepend(`${API_ENDPOINT}/`);
 
 $('#display-user-info').click(displayUserInfo);
