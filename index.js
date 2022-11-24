@@ -1,31 +1,36 @@
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 
-const client_id = document.getElementById('client_id');
-const redirect = document.getElementById('redirect');
-const scopes = document.getElementById('scopes');
+// const client_id = document.getElementById('client_id');
+// const redirect = document.getElementById('redirect');
+// const scopes = document.getElementById('scopes');
 
-const linkbutton = document.getElementById('get_link');
+// const linkbutton = document.getElementById('get_link');
 
 const queryString = {
-    // client_id : null,
+    // client_id,
     // response_type: 'token',
-    // redirect_uri : null,
-    // scope : null
+    // redirect_uri,
+    // scope
 }
 
 function updateQuery()
 {
-    if(client_id.value.length === 0)
+    const client_id = $('#client-id').val();
+    const redirect_uri = $('#redirect').val();
+    const scopes = $('#scopes').val();
+
+
+    if(client_id.length === 0)
         return false;
-    if(redirect.value.length === 0)
+    if(redirect_uri.length === 0)
         return false;
     
-    queryString.client_id = client_id.value;
+    queryString.client_id = client_id;
     queryString.response_type = 'token';
-    queryString.redirect_uri = redirect.value;
+    queryString.redirect_uri = redirect_uri;
     
     if(scopes.value !== '')
-        queryString.scope = scopes.value;
+        queryString.scope = scopes;
     
     return true;
 }
@@ -39,9 +44,13 @@ function buildLink() {
     url.search = new URLSearchParams(queryString);
     const urlStr = url.toString();
     
-    const link = document.getElementById('link');
-    link.href = urlStr;
-    link.textContent = urlStr;
+    $('#link').attr('href', urlStr).text(urlStr);
+    
+    // const link = $('#link');
+    // // set link as href and text for visual
+    // link.attr('href', urlStr);
+    // link.text(urlStr);
 }
 
-linkbutton.addEventListener('click', buildLink);
+$('#get-link').click(buildLink);
+// linkbutton.addEventListener('click', buildLink);
