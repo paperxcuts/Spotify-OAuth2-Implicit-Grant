@@ -23,7 +23,7 @@ function updateQuery()
     queryString.response_type = 'token';
     queryString.redirect_uri = redirect_uri;
     
-    if(scopes.value !== '')
+    if(scopes.length !== 0)
         queryString.scope = scopes;
     
     return true;
