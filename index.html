@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>auth link builder</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="index.js" defer></script>
 <style>
     .param-block{
@@ -33,8 +34,8 @@
         <div class="param-block">
             <h4>CLient ID (required)</h4>
             <p>The client id to your spotify application. note for implicit grant flow we do not need a secret key</p>    
-            <label for="client_id">Client id</label>
-            <input name="client_id" type="text" id="client_id" placeholder="client id">
+            <label for="client-id">Client id</label>
+            <input name="client-id" type="text" id="client-id" placeholder="client id">
         </div>
         
         <div class="param-block">
@@ -56,7 +57,7 @@
         <h4>Authorization Link</h4>
         <p>The request we send to spotify authroize endpoint. After you have generated the link, click it to send a GET request.</p>
         <p>After you accept or deny permission, you will be redirected to the redirect uri</p>
-        <button id="get_link">Build link</button>
+        <button id="get-link">Build link</button>
         <label for="link">link -</label>
         <a name="link" href="" id="link"></a>
     </div>
