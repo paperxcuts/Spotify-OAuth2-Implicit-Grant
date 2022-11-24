@@ -68,10 +68,8 @@ function displayPlaylistTracks()
 }
 function displayUserPlaylists()
 {
-    console.log('hit');
     filterPlaylistsJson()
     .then(res => {
-        console.log(res);
         const output = $('#playlist-output');
         output.empty();
         output.append(jsonprestring(res));
