@@ -1,5 +1,5 @@
 <!-- the design looks not very appealing but this is not a web design project. 
-    the most important thing is the functionality. this is
+    the main thing is functionality. this is
     just a simple beginner test on how to work with implicit grants -->
 
 <!DOCTYPE html>
@@ -12,15 +12,6 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="index.js" defer></script>
 <style>
-    .param-block{
-        margin-top: 20px;
-        border: 1px solid black;
-        border-radius: 5px;
-        padding: 10px;
-    }
-    .param-block h4{
-        line-height: 5px;
-    }
     .params {
         border: 1px solid black;
         margin: 0px;
@@ -29,27 +20,28 @@
     .block{
         margin-top: 25px;
         border: 1px solid black;
+        border-radius: 5px;
         padding: 10px;
     }
 </style>
 </head>
 <body>
     <div class="params">
-        <div class="param-block">
+        <div class="block">
             <h4>Client ID (required)</h4>
             <p>The client id to your spotify application. note for implicit grant flow we do not need a secret key</p>    
             <label for="client-id">Client id</label>
             <input name="client-id" type="text" id="client-id" placeholder="client id">
         </div>
         
-        <div class="param-block">
+        <div class="block">
             <h4>Redirect URI (required)</h4>
             <p>Where we will be redirected after we click the link. you will need to add this link in your spotify application</p>
             <label for="redirect">Redirect URI</label>
             <input name="redirect" type="text" id="redirect" value="http://localhost:8000/access.html" placeholder="redirect uri">
         </div>
         
-        <div class="param-block">
+        <div class="block">
             <h4>Authorization Scopes (optional)</h4>
             <p>Enter the <a href="https://developer.spotify.com/documentation/general/guides/authorization/scopes/" target="_blank">scopes</a> for what we are allowed to access (seperated by spaces)</p>
             <label for="scopes">Scopes</label>
@@ -59,13 +51,12 @@
     
     <div class="block">
         <h4>Authorization Link</h4>
-        <p>The request we send to spotify authroize endpoint. After you have generated the link, click it to send a GET request.</p>
-        <p>After you accept or deny permission, you will be redirected to the redirect uri</p>
-        <button id="get-link">Build link</button>
-        <label for="link">link -</label>
-        <a name="link" href="" id="link"></a>
-    </div>
-    <p>more about implicit grant for spotify <a href="https://developer.spotify.com/documentation/general/guides/authorization/implicit-grant/">here</a></p>
-
+        <p>The request we send to spotify authroize endpoint. After you have generated the link, click it to send a GET request. After you accept or deny permission, you will be redirected to the redirect uri</p>
+            <button id="get-link">Build link</button>
+            <label for="link">link -</label>
+            <a name="link" href="" id="link"></a>
+        </div>
+        <p>more about implicit grant for spotify <a href="https://developer.spotify.com/documentation/general/guides/authorization/implicit-grant/">here</a></p>
+        
 </body>
 </html>
