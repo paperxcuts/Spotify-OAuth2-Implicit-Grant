@@ -4,6 +4,8 @@ const AUTH_HEADER = new Headers({Authorization : `Bearer ${ACCESS_TOKEN}`});
 
 const jsonprestring = json => `<pre>${JSON.stringify(json, null, 2)}</pre>`;
 
+// const api_request = async url => await fetch(`${API_ENDPOINT}/${url}`, {headers: AUTH_HEADER}).then(res => res.json());
+
 // get json data from response to GET request at API_ENDPOINT
 async function api_request(url) {
     return await fetch(`${API_ENDPOINT}/${url}`, {headers: AUTH_HEADER}).then(res => res.json()).catch(err => {console.log(err)});
@@ -61,7 +63,7 @@ async function filterTracksJson(playlist_id)
 
 function displayPlaylistTracks()
 {
-    const playlist_id = $('#plist-id-text').val();
+    const playlist_id = $('#playlist-id').val();
     if(playlist_id.length === 0) {
         console.warn('playlist id must be present');
         return;
@@ -77,7 +79,7 @@ function displayPlaylists()
 {
     filterPlaylistsJson()
     .then(res => {
-        const output = $('#playlists-output');
+        const output = $('#playlist-output');
         output.empty();
         output.append(jsonprestring(res));
     })
@@ -95,7 +97,7 @@ function displayUserInfo()
 }
 function displayUserRequest()
 {
-    const url = $('#user-req-input').val();
+    const url = $('#request-input').val();
     if(url.length === 0) {
         console.warn('input must not be empty');
         return;
@@ -108,17 +110,23 @@ function displayUserRequest()
     .then(res => {
         output.append(jsonprestring(res));                
     })
-    .catch(err => console.warn(err));
+    .catch(err => console.log(err));
 }
 
 
-$('#request-url-prefix').prepend(`${API_ENDPOINT}/`);
+// append endpoint to html
+$('#request-prefix').prepend(`${API_ENDPOINT}/`);
 
-$('#tracks-clear').click(() => $('#track-output').empty());
-$('#user-req-clear-output').click(() => $('#request-output').empty());        
-$('#clear-playlist-output').click(() => $('#playlists-output').empty());
-
-$('#tracks-display').click(displayPlaylistTracks);
-$('#submit-user-request').click(displayUserRequest);
 $('#display-user-info').click(displayUserInfo);
+
+// user requests
+$('#submit-request').click(displayUserRequest);
+$('#clear-requests').click(() => $('#request-output').empty());        
+
+// playlists
+$('#clear-playlists').click(() => $('#playlist-output').empty());
 $('#display-playlists').click(displayPlaylists);
+
+// tracks
+$('#clear-tracks').click(() => $('#track-output').empty());
+$('#display-tracks').click(displayPlaylistTracks);
