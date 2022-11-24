@@ -9,7 +9,7 @@ const jsonprestring = json => `<pre>${JSON.stringify(json, null, 2)}</pre>`;
 // get json data from response to GET request at API_ENDPOINT
 async function api_request(url) {
     return await fetch(`${API_ENDPOINT}/${url}`, {headers: AUTH_HEADER})
-    .then(res => ({ data : res.json(), response : res.status}))
+    .then(res => res.json())
     .catch(err => console.log(err));
 }
 
@@ -19,7 +19,7 @@ async function filterPlaylistsJson()
     return await api_request('me/playlists')
     .then(res => {
         const playlists = [];
-        res.data.items.forEach(val => {
+        res.items.forEach(val => {
             playlists.push({
                 name: val.name,
                 songs: val.tracks.total,
@@ -36,10 +36,10 @@ async function filterTracksJson(playlist_id)
     return await api_request(`playlists/${playlist_id}/tracks`)
     .then(res => {
         const all_tracks = {
-            total_tracks: res.data.total,
+            total_tracks: res.total,
             tracks: []
         };
-        res.data.items.forEach(val => {
+        res.items.forEach(val => {
             const track = val.track;
             all_tracks.tracks.push({
                 name: track.name,
@@ -52,7 +52,6 @@ async function filterTracksJson(playlist_id)
     })
     .catch(err => console.log(err));
 }
-
 
 function displayPlaylistTracks()
 {
@@ -81,8 +80,8 @@ function displayUserInfo()
 {
     api_request('me')
     .then(res => {
-        $('#id').text(`id: ${res.data.id}`);
-        $('#followers').text(`followers: ${res.data.followers.total}`);
+        $('#id').text(`id: ${res.id}`);
+        $('#followers').text(`followers: ${res.followers.total}`);
     })
     .catch(err => console.log(err));
 }
@@ -99,7 +98,7 @@ function displayUserRequest()
     output.empty();
     api_request(url)
     .then(res => {
-        output.append(jsonprestring(res.data));                
+        output.append(jsonprestring(res));     
     })
     .catch(err => console.log(err));
 }
