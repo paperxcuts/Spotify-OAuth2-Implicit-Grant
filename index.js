@@ -1,11 +1,5 @@
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 
-// const client_id = document.getElementById('client_id');
-// const redirect = document.getElementById('redirect');
-// const scopes = document.getElementById('scopes');
-
-// const linkbutton = document.getElementById('get_link');
-
 const queryString = {
     // client_id,
     // response_type: 'token',
@@ -45,12 +39,6 @@ function buildLink() {
     const urlStr = url.toString();
     
     $('#link').attr('href', urlStr).text(urlStr);
-    
-    // const link = $('#link');
-    // // set link as href and text for visual
-    // link.attr('href', urlStr);
-    // link.text(urlStr);
 }
 
 $('#get-link').click(buildLink);
-// linkbutton.addEventListener('click', buildLink);
