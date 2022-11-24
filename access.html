@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Implicit Grant Flow</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="access.js" defer></script>
+<style>
+    .json-snippet {
+        margin:7px;
+        border:1px solid black; 
+        border-radius:5px;
+        padding:10px;
+    }
+    .block {
+        padding: 20px;
+        border: 1px solid black;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .block p{
+        line-height: 7px;
+    }
+    .block h3{
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+    <div class="block">
+        <h3><a href="https://developer.spotify.com/documentation/web-api/reference/#/" target="_blank">Make requests</a></h3>
+        <p>type the url with any parameters and click submit</p>
+        <p>this will send a GET request with the auth token in the header</p>
+        <br>
+        <span id="request-url-prefix"><input id="user-req-input" type="text"> <button id="submit-user-request">submit</button></span>
+        <button id="user-req-clear-output">clear output</button>
+        <div id="request-output"></div>
+    </div>
+    
+    <div class="block">
+        <h3>User info <button id="display-user-info">display</button></h3>
+        <p id="id">id: </p>
+        <p id="followers">followers: </p>
+    </div>
+
+    <div class="block">
+        <h3>Users playlists 
+            <button id="display-playlists">display</button>
+            <button id="clear-playlist-output">clear</button>
+        </h3>
+        <div id="playlists-output"></div>
+    </div>
+
+    <div class="block">
+        <h3>Playlist tracks <input type="text" placeholder="playlist_id" id="plist-id-text"></h3>
+
+        <button id="tracks-display">display</button>
+        <button id="tracks-clear">clear</button>
+        <div id="track-output"></div>
+    </div>
+
+
+</body>
+</html>
