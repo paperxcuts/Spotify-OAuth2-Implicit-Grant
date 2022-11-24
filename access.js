@@ -11,19 +11,12 @@ async function api_request(url) {
     return await fetch(`${API_ENDPOINT}/${url}`, {headers: AUTH_HEADER}).then(res => res.json()).catch(err => {console.log(err)});
 }
 
-async function getPlaylists() {
-    return await api_request('me/playlists');
-}
-
-async function getPlaylistTracks(playlist_id) {
-    return await api_request(`playlists/${playlist_id}/tracks`);
-}
-
 // simplified, filtered representation of data
 async function filterPlaylistsJson()
 {
-    return await getPlaylists()
+    return await api_request('me/playlists')
     .then(res => {
+        console.log(res);
         const playlists = [];
         res.items.forEach(val => {
             playlists.push({
@@ -39,13 +32,12 @@ async function filterPlaylistsJson()
 }
 async function filterTracksJson(playlist_id)
 {
-    return await getPlaylistTracks(playlist_id)
+    return await api_request(`playlists/${playlist_id}/tracks`)
     .then(res => {
         const all_tracks = {
             total_tracks: res.total,
             tracks: []
         };
-
         res.items.forEach(val => {
             const track = val.track;
             all_tracks.tracks.push({
@@ -68,24 +60,25 @@ function displayPlaylistTracks()
         console.warn('playlist id must be present');
         return;
     }
-
     filterTracksJson(playlist_id)
     .then(res => {
         $('#track-output').append(jsonprestring(res));
     })
     .catch(err => console.log(err));
 }
-function displayPlaylists()
+
+function displayUserPlaylists()
 {
+    console.log('hit');
     filterPlaylistsJson()
     .then(res => {
+        console.log(res);
         const output = $('#playlist-output');
         output.empty();
         output.append(jsonprestring(res));
     })
     .catch(err => console.log(err));
 }
-
 function displayUserInfo()
 {
     api_request('me')
@@ -125,7 +118,7 @@ $('#clear-requests').click(() => $('#request-output').empty());
 
 // playlists
 $('#clear-playlists').click(() => $('#playlist-output').empty());
-$('#display-playlists').click(displayPlaylists);
+$('#display-playlists').click(displayUserPlaylists);
 
 // tracks
 $('#clear-tracks').click(() => $('#track-output').empty());
