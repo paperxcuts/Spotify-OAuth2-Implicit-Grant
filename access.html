@@ -35,8 +35,10 @@
         <p>type the url with any parameters and click submit</p>
         <p>this will send a GET request with the auth token in the header</p>
         <br>
-        <span id="request-url-prefix"><input id="user-req-input" type="text"> <button id="submit-user-request">submit</button></span>
-        <button id="user-req-clear-output">clear output</button>
+        <span id="request-prefix">
+            <input id="request-input" type="text"> 
+            <button id="submit-request">submit</button></span>
+        <button id="clear-requests">clear output</button>
         <div id="request-output"></div>
     </div>
     
@@ -49,16 +51,16 @@
     <div class="block">
         <h3>Users playlists 
             <button id="display-playlists">display</button>
-            <button id="clear-playlist-output">clear</button>
+            <button id="clear-playlists">clear</button>
         </h3>
-        <div id="playlists-output"></div>
+        <div id="playlist-output"></div>
     </div>
 
     <div class="block">
-        <h3>Playlist tracks <input type="text" placeholder="playlist_id" id="plist-id-text"></h3>
+        <h3>Playlist tracks <input type="text" placeholder="playlist_id" id="playlist-id"></h3>
 
-        <button id="tracks-display">display</button>
-        <button id="tracks-clear">clear</button>
+        <button id="display-tracks">display</button>
+        <button id="clear-tracks">clear</button>
         <div id="track-output"></div>
     </div>
 
